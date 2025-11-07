@@ -1,0 +1,110 @@
+{
+  "controller_manager": {
+    "ros__parameters": {
+      "update_rate": 100,
+      "use_sim_time": true,
+      "joint_state_broadcaster": {
+        "type": "joint_state_broadcaster/JointStateBroadcaster"
+      },
+      "amiga_base_controller": {
+        "type": "diff_drive_controller/DiffDriveController"
+      },
+      "kinova_arm_controller": {
+        "type": "joint_trajectory_controller/JointTrajectoryController"
+      }
+    }
+  },
+  "ros2_control": {
+    "ros__parameters": {
+      "use_sim_time": true,
+      "write_integral_limit": 0.0,
+      "joint_state_publish_rate": 50.0,
+      "amiga_kinova_system": {
+        "type": "ignition_ros2_control/GenericSystem",
+        "joints": {
+          "left_wheel_joint": {
+            "command_interfaces": ["velocity"],
+            "state_interfaces": ["position", "velocity"]
+          },
+          "right_wheel_joint": {
+            "command_interfaces": ["velocity"],
+            "state_interfaces": ["position", "velocity"]
+          },
+          "kinova_joint_1": {
+            "command_interfaces": ["position"],
+            "state_interfaces": ["position", "velocity"]
+          },
+          "kinova_joint_2": {
+            "command_interfaces": ["position"],
+            "state_interfaces": ["position", "velocity"]
+          },
+          "kinova_joint_3": {
+            "command_interfaces": ["position"],
+            "state_interfaces": ["position", "velocity"]
+          },
+          "kinova_joint_4": {
+            "command_interfaces": ["position"],
+            "state_interfaces": ["position", "velocity"]
+          },
+          "kinova_joint_5": {
+            "command_interfaces": ["position"],
+            "state_interfaces": ["position", "velocity"]
+          },
+          "kinova_joint_6": {
+            "command_interfaces": ["position"],
+            "state_interfaces": ["position", "velocity"]
+          },
+          "kinova_joint_7": {
+            "command_interfaces": ["position"],
+            "state_interfaces": ["position", "velocity"]
+          }
+        }
+      }
+    }
+  },
+  "amiga_base_controller": {
+    "ros__parameters": {
+      "use_stamped_vel": false,
+      "left_wheel_names": ["left_wheel_joint"],
+      "right_wheel_names": ["right_wheel_joint"],
+      "wheel_separation": 0.9,
+      "wheel_radius": 0.3,
+      "linear": {
+        "x": {
+          "has_velocity_limits": true,
+          "max_velocity": 1.5
+        }
+      },
+      "angular": {
+        "z": {
+          "has_velocity_limits": true,
+          "max_velocity": 1.0
+        }
+      }
+    }
+  },
+  "kinova_arm_controller": {
+    "ros__parameters": {
+      "command_interfaces": ["position"],
+      "state_interfaces": ["position", "velocity"],
+      "joints": [
+        "kinova_joint_1",
+        "kinova_joint_2",
+        "kinova_joint_3",
+        "kinova_joint_4",
+        "kinova_joint_5",
+        "kinova_joint_6",
+        "kinova_joint_7"
+      ],
+      "gains": {
+        "kinova_joint_1": {"p": 200.0, "d": 5.0, "i": 0.1},
+        "kinova_joint_2": {"p": 200.0, "d": 5.0, "i": 0.1},
+        "kinova_joint_3": {"p": 150.0, "d": 4.0, "i": 0.05},
+        "kinova_joint_4": {"p": 120.0, "d": 3.0, "i": 0.05},
+        "kinova_joint_5": {"p": 100.0, "d": 2.5, "i": 0.02},
+        "kinova_joint_6": {"p": 80.0, "d": 2.0, "i": 0.01},
+        "kinova_joint_7": {"p": 60.0, "d": 2.0, "i": 0.01}
+      }
+    }
+  }
+}
